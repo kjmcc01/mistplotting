@@ -2,33 +2,39 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import mistery
+from get_any_tracks import get_mistery_isochrones, get_mistery_tracks
+from plot_default import plot_default_tracks
 
 def main():
     st.title("Basic Graph Plotting App")
 
     mass_input = st.number_input("Enter desired stellar mass: ")
     mass = mass_input
-    #mass = float(mass_input)
     metallicity_input = st.number_input("Enter desired stellar metallicity (positive): ")
-    #metallicity = float(metallicity_input)
     metallicity = metallicity_input
 
-    track = mistery.get_track(M=mass, FeH=metallicity)
+    times_input = st.number_input("Enter desired age of isochrones (in Gyr): ")
+
+
+    plot_default_tracks(mass, times_input, metallicity)
+
+    tracks = get_mistery_tracks(mass, metallicity)
+    isochrones = get_mistery_isochrones(times_input, metallicity)
 
     st.write("Select graph axes.")
 
     graph_x_axis = st.sidebar.selectbox(
         "Select x-axis",
-        (track.dtype.names)
+        (tracks.dtype.names)
     )
 
     graph_y_axis = st.sidebar.selectbox(
         "Select y-axis",
-        (track.dtype.names)
+        (tracks.dtype.names)
     )
 
-    x_data = track[graph_x_axis]
-    y_data = track[graph_y_axis]
+    x_data = tracks[graph_x_axis]
+    y_data = tracks[graph_y_axis]
 
     fig, ax = plt.subplots(figsize=(5,5))
     ax.plot(x_data, y_data)
