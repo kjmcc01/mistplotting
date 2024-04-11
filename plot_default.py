@@ -7,6 +7,7 @@ import numpy as np
 import mistery
 from get_any_tracks import get_mistery_isochrones, get_mistery_tracks
 
+@st.cache_data
 def plot_default_tracks(masses, times, metallicity):
 
     track = get_mistery_tracks(masses, metallicity)
@@ -21,7 +22,7 @@ def plot_default_tracks(masses, times, metallicity):
     ax1.set_ylabel('luminosity (solar units)')
     ax2.set_xlabel('effective temperature (K)')
     ax2.set_ylabel('luminosity (solar units)')
-    
+
     plt.xlim(8500, 2500)
     plt.legend()
     st.pyplot(fig)

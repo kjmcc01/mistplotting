@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import mistery
 
+@st.cache_data
 def get_mistery_tracks(masses, metallicity):
 
     if len([masses]) > 1:
@@ -14,7 +15,7 @@ def get_mistery_tracks(masses, metallicity):
 
     return tracks
 
-
+@st.cache_data
 def get_mistery_isochrones(times, metallicity):
 
     if len([times]) > 1:

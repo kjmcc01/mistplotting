@@ -6,7 +6,7 @@ from get_any_tracks import get_mistery_isochrones, get_mistery_tracks
 from plot_default import plot_default_tracks
 
 def main():
-    st.title("Basic Graph Plotting App")
+    st.title("mistery stellar evolution plotting app")
 
     mass_input = st.number_input("Enter desired stellar mass: ")
     mass = mass_input
@@ -15,13 +15,12 @@ def main():
 
     times_input = st.number_input("Enter desired age of isochrones (in Gyr): ")
 
-
     plot_default_tracks(mass, times_input, metallicity)
 
     tracks = get_mistery_tracks(mass, metallicity)
     isochrones = get_mistery_isochrones(times_input, metallicity)
 
-    st.write("Select graph axes.")
+    st.sidebar.write("Select graph axes.")
 
     graph_x_axis = st.sidebar.selectbox(
         "Select x-axis",
