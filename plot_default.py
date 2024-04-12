@@ -18,8 +18,10 @@ def plot_default_tracks(masses, times, metallicity):
     ax1.semilogy(10**track['log_Teff'], 10**track['log_L'], label='track')
     ax2.semilogy(10**isochrone['log_Teff'], 10**isochrone['log_L'], label='isochrone')
 
+    ax1.set_title('evolutionary track')
     ax1.set_xlabel('effective temperature (K)')
     ax1.set_ylabel('luminosity (solar units)')
+    ax2.set_title('isochrone')
     ax2.set_xlabel('effective temperature (K)')
     ax2.set_ylabel('luminosity (solar units)')
 

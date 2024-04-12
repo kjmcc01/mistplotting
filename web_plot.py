@@ -20,7 +20,7 @@ def main():
     tracks = get_mistery_tracks(mass, metallicity)
     isochrones = get_mistery_isochrones(times_input, metallicity)
 
-    st.sidebar.write("Select graph axes.")
+    st.sidebar.title("Select graph axes.")
 
     graph_x_axis = st.sidebar.selectbox(
         "Select x-axis",
@@ -31,6 +31,10 @@ def main():
         "Select y-axis",
         (tracks.dtype.names)
     )
+
+    st.sidebar.write(
+        "log_Teff: effective temperature (logarithmic)  \n"
+        "log_L: luminosity (logarithmic)")
 
     x_data = tracks[graph_x_axis]
     y_data = tracks[graph_y_axis]
