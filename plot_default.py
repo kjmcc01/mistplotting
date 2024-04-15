@@ -8,15 +8,16 @@ import mistery
 from get_any_tracks import get_mistery_isochrones, get_mistery_tracks
 
 @st.cache_data
-def plot_default_tracks(masses, times, metallicity):
+def plot_default_tracks(tracks, isochrones):
 
-    track = get_mistery_tracks(masses, metallicity)
-    isochrone = get_mistery_isochrones(times, metallicity)
+   # track = get_mistery_tracks(masses, metallicity)
+   # isochrone = get_mistery_isochrones(times, metallicity)
 
+    plt.rcParams.update({'font.size': 8})
     fig, (ax1, ax2) = plt.subplots(2, figsize=(5,8))
-
-    ax1.semilogy(10**track['log_Teff'], 10**track['log_L'], label='track')
-    ax2.semilogy(10**isochrone['log_Teff'], 10**isochrone['log_L'], label='isochrone')
+    for i in range(0, len(tracks)):
+        ax1.semilogy(10**tracks[i]['log_Teff'], 10**tracks[i]['log_L'], label='track')
+    ax2.semilogy(10**isochrones['log_Teff'], 10**isochrones['log_L'], label='isochrone')
 
     ax1.set_title('evolutionary track')
     ax1.set_xlabel('effective temperature (K)')
