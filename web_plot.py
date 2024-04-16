@@ -4,6 +4,7 @@ import numpy as np
 import mistery
 from get_any_tracks import get_mistery_isochrones, get_mistery_tracks
 from plot_default import plot_default_tracks
+from plot_mistery_tracks import plot_new_tracks 
 
 def main():
     st.title("mistery stellar evolution plotting app")
@@ -15,7 +16,7 @@ def main():
     except:
         mass = mass
 
-    metallicity_input = st.number_input("Enter desired stellar metallicity (positive): ")
+    metallicity_input = st.number_input("Enter desired stellar metallicity: ")
     metallicity = metallicity_input
 
     ages_input = st.text_input("Enter desired age of isochrones (in Gyr, separate by spaces): ")
@@ -43,22 +44,7 @@ def main():
         (tracks[0].dtype.names)
     )
 
-    st.sidebar.write(
-        "log_Teff: effective temperature (logarithmic)  \n"
-        "log_L: luminosity (logarithmic)"
-        " ")
-
-    fig, ax = plt.subplots(figsize=(5,5))
-    if len(mass)==1:
-        x_data = tracks[graph_x_axis]
-        y_data = tracks[graph_y_axis] 
-        ax.plot(x_data, y_data)
-    else:
-        for i in range(0, len(tracks)):
-            x_data = tracks[i][graph_x_axis]
-            y_data = tracks[i][graph_y_axis]
-            ax.plot(x_data, y_data)
-    st.pyplot(fig)
+    plot_new_tracks(mass, tracks, ages, isochrones, graph_x_axis, graph_y_axis)
 
     #return graph_x_axis, graph_y_axis
 
