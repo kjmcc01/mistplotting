@@ -26,7 +26,6 @@ def main():
     except:
         ages = ages 
 
-
     tracks = get_mistery_tracks(mass, metallicity)
     isochrones = get_mistery_isochrones(ages, metallicity)
 
@@ -44,7 +43,7 @@ def main():
         (tracks[0].dtype.names)
     )
 
-    plot_new_tracks(mass, tracks, ages, isochrones, graph_x_axis, graph_y_axis)
+    plot_new_tracks(mass, tracks, graph_x_axis, graph_y_axis)
 
     #return graph_x_axis, graph_y_axis
 
