@@ -10,7 +10,7 @@ def get_mistery_tracks(masses, metallicity):
         tracks = mistery.get_tracks(Ms=masses, FeH=metallicity)
 
     elif len(masses) == 1:
-        tracks = mistery.get_track(M=masses, FeH=metallicity)
+        tracks = mistery.get_track(M=masses[0], FeH=metallicity)
     
     else:
         tracks = 0
@@ -18,12 +18,15 @@ def get_mistery_tracks(masses, metallicity):
     return tracks
 
 @st.cache_data
-def get_mistery_isochrones(times, metallicity):
+def get_mistery_isochrones(ages, metallicity):
 
-    if len([times]) > 1:
-        isochrones = mistery.get_isochrones(ts=times, FeH=metallicity)
+    if len(ages) > 1:
+        isochrones = mistery.get_isochrones(ts=ages, FeH=metallicity)
 
-    elif len([times]) == 1:
-        isochrones = mistery.get_isochrone(t=times, FeH=metallicity)
+    elif len(ages) == 1:
+        isochrones = mistery.get_isochrone(t=ages[0], FeH=metallicity)
+
+    else:
+        isochrones = 0
 
     return isochrones
