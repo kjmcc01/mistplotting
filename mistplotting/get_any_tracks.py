@@ -4,7 +4,7 @@ import numpy as np
 import mistery
 
 @st.cache_data
-def get_mistery_tracks(masses, metallicity):
+def get_mistery_tracks(masses=1.0, metallicity=0.02):
 
     if len(masses) > 1:
         tracks = mistery.get_tracks(Ms=masses, FeH=metallicity)

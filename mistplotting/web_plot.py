@@ -2,15 +2,15 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import mistery
-from get_any_tracks import get_mistery_isochrones, get_mistery_tracks
-from plot_default import plot_default_tracks
-from plot_mistery_tracks import plot_new_tracks 
+from mistplotting.get_any_tracks import get_mistery_isochrones, get_mistery_tracks
+from mistplotting.plot_default import plot_default_tracks
+from mistplotting.plot_mistery_tracks import plot_new_tracks 
 
 def main():
     st.title("mistery stellar evolution plotting app")
 
-    mass_input = st.text_input("Enter desired stellar mass (in solar masses, separate by spaces): ")
-    mass = mass_input.split(" ")
+    mass_input = st.text_input("Enter desired stellar mass (in solar masses, separate by spaces): ", placeholder='1.0')
+    mass = mass_input.split(",")
     try:
         mass = [float(i) for i in mass]
     except:
@@ -19,8 +19,8 @@ def main():
     metallicity_input = st.number_input("Enter desired stellar metallicity: ")
     metallicity = metallicity_input
 
-    ages_input = st.text_input("Enter desired age of isochrones (in Gyr, separate by spaces): ")
-    ages = ages_input.split(" ")
+    ages_input = st.text_input("Enter desired age of isochrones (in Gyr, separate by spaces): ", placeholder='1.0')
+    ages = ages_input.split(",")
     try:
         ages = [float(i) for i in ages]
     except:
@@ -53,7 +53,8 @@ def main():
 
     graph_y_axis = st.sidebar.selectbox(
         "Select y-axis",
-        (tracks[0].dtype.names)
+        (tracks[0].dtype.names),
+        index = 6
     )
 
     plot_new_tracks(mass, tracks, graph_x_axis, graph_y_axis)

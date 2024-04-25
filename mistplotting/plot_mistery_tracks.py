@@ -2,7 +2,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import mistery
-from get_any_tracks import get_mistery_isochrones, get_mistery_tracks
+from mistplotting.get_any_tracks import get_mistery_isochrones, get_mistery_tracks
 
 @st.cache_data
 
