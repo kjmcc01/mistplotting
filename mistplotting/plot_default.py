@@ -5,10 +5,9 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import mistery
-from get_any_tracks import get_mistery_isochrones, get_mistery_tracks
 
 @st.cache_data
-def plot_default_tracks(mass, tracks, ages, isochrones):
+def plot_default_tracks(mass, mass_input, tracks, ages, ages_input, isochrones):
 
     plt.rcParams.update({'font.size': 12})
     fig, (ax1, ax2) = plt.subplots(2, figsize=(8,10))
@@ -32,14 +31,22 @@ def plot_default_tracks(mass, tracks, ages, isochrones):
     ax1.set_xlabel('effective temperature (K)')
     ax1.set_ylabel(f'Luminosity ($L_☉$)')
 
-    mass_labels = [f'{label:.1f} $M_☉$' for label in mass]
+    print(mass)
+
+    if mass_input == '':
+        mass_labels = ['1 $M_☉$']
+    else:
+        mass_labels = [f'{label:.1f} $M_☉$' for label in mass]
+
     ax1.legend(mass_labels)
 
     ax2.set_title('isochrone')
     ax2.set_xlabel('effective temperature (K)')
     ax2.set_ylabel(f'Luminosity ($L_☉$)')
-
-    age_labels = [f'{label:.1f} Gyr' for label in ages]
+    if ages_input == '':
+        age_labels = ['1 Gyr']
+    else:
+        age_labels = [f'{label:.1f} Gyr' for label in ages]
     ax2.legend(age_labels)
 
     plt.xlim(8500, 2500)

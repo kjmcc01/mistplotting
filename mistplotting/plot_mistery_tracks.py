@@ -2,11 +2,10 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import mistery
-from mistplotting.get_any_tracks import get_mistery_isochrones, get_mistery_tracks
 
 @st.cache_data
 
-def plot_new_tracks(mass, tracks, x_axis, y_axis):
+def plot_new_tracks(mass, mass_input, tracks, x_axis, y_axis):
 
     plt.rcParams.update({'font.size': 8})
     fig, ax = plt.subplots(figsize=(5,5))
@@ -28,7 +27,10 @@ def plot_new_tracks(mass, tracks, x_axis, y_axis):
 
     ax.set_xlabel(x_axis)
     ax.set_ylabel(y_axis)
-    mass_labels = [f'{label:.1f} $M_☉$' for label in mass]
+    if mass_input == '':
+        mass_labels = ['1 $M_☉$']
+    else:
+        mass_labels = [f'{label:.1f} $M_☉$' for label in mass]
     ax.legend(mass_labels)
 
     st.pyplot(fig)
