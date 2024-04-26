@@ -26,12 +26,10 @@ def plot_default_tracks(mass, mass_input, tracks, ages, ages_input, isochrones):
         for i in range(0, len(ages)):
             ax2.semilogy(10**isochrones[i]['log_Teff'], 10**isochrones[i]['log_L'], c=plt.cm.tab20(i % 20))
 
-
+    ax1.invert_xaxis()
     ax1.set_title('evolutionary track')
     ax1.set_xlabel('effective temperature (K)')
-    ax1.set_ylabel(f'Luminosity ($L_☉$)')
-
-    print(mass)
+    ax1.set_ylabel(f'Luminosity ($L_☉$)')    
 
     if mass_input == '':
         mass_labels = ['1 $M_☉$']
